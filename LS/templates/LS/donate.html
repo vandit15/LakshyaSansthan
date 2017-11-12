@@ -1,0 +1,50 @@
+{% extends 'LS/base.html' %}
+{% load static %}
+{% block headinclude %}
+<script src= "https://www.payumoney.com/Api/REST/op/buttonScript" async="true" > </script>
+<script>
+function payme(){
+          // alert(document.getElementById('val').value);
+          window.PUM.setData(document.getElementById('val').value, "kdfkl78ddfh45","shirt200");
+          window.PUM.pay();
+};
+
+</script>
+{% endblock %}
+{% block content %}
+    <!-- Donation form -->
+
+    <div class="container">
+      <h2 style="text-align: center">Donate Generously</h2>
+      <div style="flex: 1;text-align: center">
+        {% for a in donors %}
+  <!-- <div class="panel panel-default" style="flex: 48%"> -->
+          <div class="panel-body">
+              <div class="media-body">
+                <p>Username: {{ a.username }}</p>
+                <p>ContactNo: {{ a.contact_no }}</p>
+                <p>Email: {{ a.email }}</p>
+                <p>PAN: {{ a.PAN }}</p>
+              </div>
+        {% endfor %}
+          </div>
+
+          <!-- <div style="flex: 25%"></div> -->
+      <!-- <div class="panel panel-default" style="flex: 50%"> -->
+        <!-- <form class="form-horizontal"> -->
+          <input id="val" type="number">
+          <span class='pm-button' id='2F9CE777769E09583AC070D6E8AEADB9' onclick="payme()">
+          <span class="state active">
+          <input type="image" src="https://file.payumoney.com/images/payby_payumoney/new_buttons/21.png" width="131" height="37">
+          </span>
+          <span class="state clicked" style="display:none" >
+          <input type="image" src="https://file.payumoney.com/images/payby_payumoney/new_buttons/submitted/21.png" width="131" height="37">
+          </span>
+          </span>
+        <!-- </form> -->
+        <br>
+        <p>Want to donate using another another user? <a href="{% url 'login' %}">Login</a> </p>
+        </div>
+      </div>
+    
+{% endblock %}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    {% block headinclude %}
+    {% endblock %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Lakshya Sansthan, Bassi</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.7-dist/css/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'custom/custom.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <!--<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/carousel.css">-->
+    <script>
+      $('#topnavbar').affix({
+    offset: {
+        top: $('#banner').height()
+    }   
+  });
+    </script>
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <!-- <div class = "container-fluid">
+      <img src="images/logo.jpg">
+    </div> -->
+    <div class="container-fluid">
+      <!-- <div class="header-custom container-fluid" >
+      	<div style="flex: 1">
+      		
+      	</div>
+        <div style="flex: 58%">
+          <img src="{% static 'images/logo.jpg' %}" style="width:100px;height:100px">
+        </div>
+        <div style="flex: 33%">
+        </div>
+        <div style="padding-top: 10px;flex: 25%">
+          <p style="text-align:right;">
+            Lakshya Sansthan, Bassi, Jaipur, Rajasthan
+          </p> 
+          <ul class="nav navbar-nav navbar-right">
+      					<li><a href="{% url 'donate' %}"><button type="button" class="btn btn-primary">Donate</button></a></li>
+    			</ul>
+          {% if not request.user.id %}
+          <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'register' %}"><button type="button" class="btn btn-primary">Register</button></a></li>
+          </ul> 
+          <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'login' %}"><button type="button" class="btn btn-primary">Login</button></a></li>
+          </ul>
+          {% else %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'logout' %}"><button type="button" class="btn btn-primary">Logout</button></a></li>
+          </ul>
+          {% endif %}
+        </div>
+      </div> -->
+
+    <div class="navbar-wrapper">
+      <div>
+        <nav class="navbar navbar-inverse" >
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{% url 'home' %}">Lakshya Sansthan</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Academics <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'subjects' %}">Subjects</a></li>
+                    <li><a href="{% url 'teaching' %}">Faculty</a></li>
+                    <li><a href="{% url 'view_student' %}">Students</a></li>
+                    {% if request.user.id == 1 %}
+                    <li><a href="{% url 'student' %}">Add student profile</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Healthcare <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'medical' %}">Doctors</a></li>
+                    <li><a href="{% url 'medical' %}">Nurses</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">People <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'ec' %}">Executive Committee</a></li>
+                    <li><a href="{% url 'nsf' %}">Non Technical Staff</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    {% if not request.user.id %}
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    {% else %}
+                    <li><a href="{% url 'dashboard' %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
+                <li>
+                  <a href="{% url 'news' %}">News</a>
+                </li>
+                <li>
+                  <a href="{% url 'donate' %}">Donate</a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+      <!-- FOOTER -->
+       <br>
+      <br>
+      <!--<footer style="background-color: #c1c1c1">
+	      <div style="display: flex">
+          <div style="flex:15%"></div>
+		      <div style="flex:35%">
+		      	<h3>Lakshya Sansthan</h3>
+		      	<ul>
+		      		<li><a href="{% url 'home' %}">Home</a></li>
+		      		<li><a href="{% url 'medical' %}">Healthcare</a></li>
+		      		<li><a href="{% url 'teaching' %}">Teaching</a></li>
+              <li><a href="{% url 'donate' %}">Donate</a></li>
+		      	</ul>
+		      </div>
+		      <div style="flex: 35%;">
+		      	<h3>Address</h3>
+		      	<p>Lakshya Sansthan, Bassi, Jaipur, Rajasthan</p>
+		      	<p>A non governmental organisation for handicapped children</p>
+		      	<p>Lakshya Sansthan &copy 2017.</p>
+		      </div>
+          <div style="flex:15%"></div>
+	      </div>
+      </footer> -->
+<!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  </body>
+</html>

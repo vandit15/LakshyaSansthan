@@ -1,0 +1,15 @@
+#topnavbar {
+    margin: 0;
+}
+#topnavbar.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.header-custom {
+	display:flex;
+	background-color: #f8f8f8;
+}
+#header-center {
+	flex: 1
+}

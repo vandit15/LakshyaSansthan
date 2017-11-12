@@ -1,0 +1,9 @@
+.below-custom {
+	display: flex;
+}
+
+.navbar-default {
+	background-color: #FF3333;
+	background-image: none;
+	background-repeat: no-repeat;
+}

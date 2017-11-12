@@ -1,0 +1,69 @@
+{% extends 'LS/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if messages %}
+    <center>
+    <div style="max-width:550px;">
+        {% for message in messages %}
+        <div {% if message.tags == 'error' %} class="alert alert-danger" role="alert" {% else %} class="alert alert-success" {% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    </center>
+    {% endif %}
+
+
+    <!-- <div>
+    <form class="form-horizontal" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <div class="col-sm-10">
+          <select name="type" id="type">
+            <option value="all">All</option>
+            <option value="vision">Vision Disability</option>
+            <option value="hearing">Hearing Loss and Deafness</option>
+            <option value="mobility">Mobility Impairments</option>
+            <option value="cognitive">Cognitive</option>
+          </select>
+        </div>
+        </div>
+        <div class="form-group"> 
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Apply</button>
+        </div>
+      </div>
+    </form>
+    </div> -->
+
+    <div>
+      <div class="container">
+      <div class="panel panel-default" style="flex: 48%">
+        <div class="panel-heading" style="font-size: 15pt">Students</div>
+          <div class="panel-body">    
+          {% for i in students %}       
+            <div class="media">
+              <div class="media-body">
+                <h4 class="media-heading">{{ i.name }}</h4>
+                <p> Major Disability: {{ i.major_disability }}</p>
+                <p>ContactNo: {{ i.contact_no }}</p>
+                <p>Guardians: {{ i.father_name }} , {{ i.mother_name }}</p>
+                <p>Address: {{ i.address }}</p>
+                <p>Doctor: {{ i.doctor }} Nurse: {{ i.nurse }}</p>
+                {% if request.user.username == "admin" %}
+                <p>
+                <form method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="id" value="{{ i.id }}">
+                  <input type="submit" value="delete">
+                </form>
+                </p>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+          </div>
+        </div>
+    </div>
+  {% endblock %}
+  
